@@ -2,6 +2,6 @@
 
 </script>
 
-<main>
-    <h1>Chatting page</h1>
+<main class="w-screen h-screen bg-[#020017]">
+    
 </main>
