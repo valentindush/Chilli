@@ -4,7 +4,8 @@
   "description": "backend for CHILLI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --exit-child src/index.ts",
+    "start": "ts-node src/index.ts"
   },
   "author": "Dush",
   "license": "MIT",
@@ -12,5 +13,12 @@
     "express": "^4.18.1",
     "socket.io": "^4.5.1",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.7.11",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
   }
 }
