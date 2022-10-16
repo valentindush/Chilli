@@ -34,11 +34,15 @@ const sendMsg = ()=>{
     msgValue = ""
 }
 
-const socket = io('http://localhost:4000',{ transports: ['websocket', 'polling', 'flashsocket'] });
-socket.on('connection',()=>{
-    console.log('connected to server');
-})
+const  sendMsg1 = (e : any)=>{
+    if(e.key = 'Enter') sendMsg()
+}
 
+const leaveVideoCall=()=>{
+    myVideoEl.pause()
+    myVideoEl.srcObject = null
+    isCamAllowed = false
+}
 
 </script>
 
@@ -54,7 +58,6 @@ socket.on('connection',()=>{
                         </header>
                         <div class="msgbox pt-4 h-[calc(100%-80px)] overflow-auto">
                             <!-- Messages here -->
-                            <Msg type="left" msg="Hello ghee sup ? how u doin mn"/>
                             {#each messages as msg}
                               <Msg type={msg.type} msg={msg.msg} /> 
                               {:else}
@@ -63,7 +66,7 @@ socket.on('connection',()=>{
                         </div>
                         <div class="absolute bottom-3 w-[calc(100%-20px)] flex items-center gap-3">
                             <div class="border-2 border-white border-opacity-10 rounded-full w-full">
-                                <input bind:value={msgValue} type="text" class="text-gray-300 bg-transparent outline-none p-2 px-4 w-full" placeholder="Type message . . .">
+                                <input on:keypress={sendMsg1} bind:value={msgValue} type="text" class="text-gray-300 bg-transparent outline-none p-2 px-4 w-full" placeholder="Type message . . .">
                             </div>
                             <button on:click={sendMsg} class="border-2 flex items-center justify-center border-white border-opacity-10 w-[60px] h-[50px] rounded-full active:border-pink-500 active:scale-95">
                                 <svg width="30" height="30" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +93,7 @@ socket.on('connection',()=>{
                         <video bind:this={myVideoEl} class="w-full h-full">
                             <track kind="captions" />
                         </video>
-                        <button class="absolute bottom-3 left-2 p-1 px-3 border-2 backdrop-blur-md border-red-500 rounded-xl text-red-500 active:scale-95">Leave</button>
+                        <button on:click={leaveVideoCall} class="absolute bottom-3 left-2 p-1 px-3 border-2 backdrop-blur-md border-red-500 rounded-xl text-red-500 active:scale-95">Leave</button>
                     </div>
                 </div>
             </div>  
