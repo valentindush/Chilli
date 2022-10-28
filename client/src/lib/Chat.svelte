@@ -3,6 +3,11 @@ import Sidebar from "./components/sidebar.svelte";
 import Msg from "./components/msg.svelte";
 import {io} from 'socket.io-client'
 
+const url = window.location.search
+const urlParams = new URLSearchParams(url);
+const nickname = urlParams.get("name");
+
+
 let myVideoEl:HTMLVideoElement;
 let theirVideoEl:HTMLVideoElement
 $:isCamAllowed = false;
@@ -53,6 +58,9 @@ const leaveVideoCall=()=>{
             <div class="w-full h-full flex">
                 <div class=" border-l w-[60%] border-white border-opacity-10 h-full">
                     <div class="chatBox p-3 relative h-full">
+                        <div class="">
+                            <!-- <p class="text-white">{nickname}</p> -->
+                        </div>
                         <header class="h-[30px">
                             <span class="text-gray-300 font-semibold text-xl">Chilli</span>
                         </header>
